@@ -39,7 +39,6 @@ export default function App() {
     }, []);
 
     const selectGame = (game) => {
-        // Initialize revealed property for each answer
         const updatedQuestions = game.questions.map(q => {
             const updatedAnswers = q.answers.map(ans => ({ ...ans, revealed: false }));
             return { ...q, answers: updatedAnswers };
@@ -59,7 +58,6 @@ export default function App() {
         const answer = question.answers[index];
 
         if (!answer.revealed) {
-            // Update the revealed state
             const updatedAnswers = question.answers.map((ans, idx) => {
                 if (idx === index) {
                     return { ...ans, revealed: true };
@@ -76,7 +74,6 @@ export default function App() {
 
             setCurrentGame({ ...currentGame, questions: updatedQuestions });
 
-            // Update the score only if a player is selected
             if (selectedPlayer) {
                 setScores(prevScores => {
                     const updatedScores = { ...prevScores };
@@ -84,7 +81,6 @@ export default function App() {
                     socket.emit('score', updatedScores);
                     return updatedScores;
                 });
-                // Reset selected player
                 setSelectedPlayer(null);
             }
         }
@@ -99,7 +95,6 @@ export default function App() {
         setTimeout(() => {
             setShowRedX(false);
         }, 1000);
-        // Reset selected player
         setSelectedPlayer(null);
     };
 
@@ -124,7 +119,6 @@ export default function App() {
     };
 
     const onEndGame = () => {
-        // Determine winner
         let winner;
         if (scores.player1 > scores.player2) {
             winner = 'Player 1 Wins!';
@@ -198,7 +192,7 @@ export default function App() {
                 </View>
 
                 <View style={styles.gameBoard}>
-                    <Text style={styles.questionText}>{currentQuestion.question}</Text>
+                    <Text style={styles.questionText} adjustsFontSizeToFit numberOfLines={2}>{currentQuestion.question}</Text>
                     <GameBoard answers={currentQuestion.answers} onRevealAnswer={onRevealAnswer} />
                 </View>
 
@@ -324,6 +318,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         textAlign: 'center',
         marginVertical: 10,
+        flexWrap: 'wrap',
     },
     bottomArea: {
         width: '100%',
