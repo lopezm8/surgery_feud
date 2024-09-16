@@ -90,12 +90,25 @@ export default function App() {
         setSelectedPlayer(player);
     };
 
-    const onPressWrongAnswer = () => {
-        setShowRedX(true);
-        setTimeout(() => {
-            setShowRedX(false);
-        }, 1000);
-        setSelectedPlayer(null);
+    const onPressWrongAnswer = async () => {
+        try {
+            // Load and play the red X sound
+            const { sound: redXSound } = await Audio.Sound.createAsync(
+                require('./assets/red_x_sound.wav')
+            );
+            await redXSound.playAsync();
+
+            // Show the red X overlay
+            setShowRedX(true);
+            setTimeout(() => {
+                setShowRedX(false);
+                redXSound.unloadAsync(); // Unload the sound after it plays
+            }, 1000);
+            
+            setSelectedPlayer(null);
+        } catch (error) {
+            console.error("Error playing red X sound:", error);
+        }
     };
 
     const onRevealAll = () => {
