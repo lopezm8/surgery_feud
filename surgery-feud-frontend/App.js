@@ -23,7 +23,7 @@ export default function App() {
 
     useEffect(() => {
         // Fetch games from backend
-        axios.get('http://localhost:5001/api/games')
+        axios.get('https://surgery-feud-backend-790d5e52ce40.herokuapp.com/api/games')
             .then(response => setGames(response.data))
             .catch(error => console.log(error));
 
