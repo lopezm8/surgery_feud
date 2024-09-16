@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Pressable, View, Text, StyleSheet, Animated, Easing } from 'react-native';
+import { Pressable, View, Text, StyleSheet, Animated, Easing, Dimensions } from 'react-native';
 import { Audio } from 'expo-av';
-import revealSound from '../assets/reveal_answer.wav'; // Adjust the path if necessary
+import revealSound from '../assets/reveal_answer.wav';
 
 export default function AnswerTile({ index, answer, revealed, onReveal }) {
     const [flipAnimation] = useState(new Animated.Value(0));
