@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
@@ -11,7 +10,7 @@ const app = express();
 
 // Enable CORS
 app.use(cors({
-    origin: '*', // Allow all origins during development
+    origin: process.env.FRONTEND_URL || 'https://surgeryfeud.netlify.app', // Use your actual Netlify URL
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -67,7 +66,7 @@ app.post('/api/games', async (req, res) => {
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: '*', // Allow all origins during development
+        origin: process.env.FRONTEND_URL || 'https://surgeryfeud.netlify.app', // Your Netlify frontend URL
         methods: ['GET', 'POST'],
         credentials: true
     },
