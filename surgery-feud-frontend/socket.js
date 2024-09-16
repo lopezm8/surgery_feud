@@ -1,7 +1,7 @@
 // socket.js
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5001', {
+const socket = io('https://surgery-feud-backend-790d5e52ce40.herokuapp.com', {
     transports: ['websocket', 'polling'],
 });
 
