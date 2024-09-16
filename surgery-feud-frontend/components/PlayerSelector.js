@@ -38,13 +38,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#005BB5',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: '#FFD700',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    playerText: {
-        color: '#FFFFFF',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-});
+        borderColor:
