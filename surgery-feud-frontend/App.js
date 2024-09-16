@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Alert, Pressable, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Alert, Pressable, Dimensions, ScrollView } from 'react-native';
 import axios from 'axios';
 import socket from './socket';
 import { Audio } from 'expo-av';
@@ -185,7 +185,7 @@ export default function App() {
     const currentQuestion = currentGame.questions[currentQuestionIndex];
 
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.titleContainer}>
                 <Text style={styles.titleText}>Surgery Feud</Text>
             </View>
@@ -249,16 +249,16 @@ export default function App() {
 
             <GameSelector games={games} onSelectGame={selectGame} />
             <RedXOverlay visible={showRedX} onDismiss={() => setShowRedX(false)} />
-        </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
         backgroundColor: '#1B1F3B',
         alignItems: 'center',
-        justifyContent: 'center', // Ensure the content is centered vertically
+        justifyContent: 'center',
     },
     titleContainer: {
         marginTop: 20,
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        height: height * 0.5, // Ensure it uses half the screen's height
+        paddingVertical: 10,
     },
     playerScoreLeft: {
         flex: 1,
@@ -318,7 +318,6 @@ const styles = StyleSheet.create({
         borderColor: '#FFD700',
         alignItems: 'center',
         paddingVertical: 10,
-        height: height * 0.35, // Make sure game board fits
     },
     questionText: {
         color: '#FFFFFF',
@@ -330,7 +329,6 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         marginTop: 10,
-        height: height * 0.2, // Adjust for bottom controls
     },
     bottomRow: {
         flexDirection: 'row',
