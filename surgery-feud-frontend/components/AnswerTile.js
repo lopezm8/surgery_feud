@@ -1,4 +1,3 @@
-// AnswerTile.js
 import React, { useState, useEffect } from 'react';
 import { Pressable, View, Text, StyleSheet, Animated, Easing } from 'react-native';
 import { Audio } from 'expo-av';
@@ -23,7 +22,6 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
     const playSound = async () => {
         const { sound } = await Audio.Sound.createAsync(revealSound);
         await sound.playAsync();
-        // Unload the sound after it finishes playing to free up resources
         sound.setOnPlaybackStatusUpdate((status) => {
             if (status.didJustFinish) {
                 sound.unloadAsync();
@@ -64,7 +62,6 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
         <Pressable onPress={flipTile} style={styles.container}>
             {isFlippable ? (
                 <View style={styles.flipContainer}>
-                    {/* Front Side */}
                     <Animated.View
                         style={[
                             styles.tile,
@@ -76,7 +73,6 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                         <Text style={styles.numberText}>{index + 1}</Text>
                     </Animated.View>
 
-                    {/* Back Side */}
                     <Animated.View
                         style={[
                             styles.tile,
@@ -86,7 +82,13 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                         ]}
                     >
                         <View style={styles.answerContainer}>
-                            <Text style={styles.answerText}>{answer.answer.toUpperCase()}</Text>
+                            <Text
+                                style={styles.answerText}
+                                adjustsFontSizeToFit
+                                numberOfLines={1}
+                            >
+                                {answer.answer.toUpperCase()}
+                            </Text>
                         </View>
                         <View style={styles.pointsContainer}>
                             <Text style={styles.pointsText}>{answer.points}</Text>
@@ -94,9 +96,7 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                     </Animated.View>
                 </View>
             ) : (
-                <View style={[styles.tile, styles.emptyTile]}>
-                    {/* Empty, unflippable tile */}
-                </View>
+                <View style={[styles.tile, styles.emptyTile]} />
             )}
         </Pressable>
     );
