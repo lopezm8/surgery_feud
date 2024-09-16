@@ -1,6 +1,5 @@
-// App.js
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Alert, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Alert, Pressable, Dimensions } from 'react-native';
 import axios from 'axios';
 import socket from './socket';
 import { Audio } from 'expo-av';
@@ -9,6 +8,8 @@ import GameBoard from './components/GameBoard';
 import GameSelector from './components/GameSelector';
 import RevealButton from './components/RevealButton';
 import RedXOverlay from './components/RedXOverlay';
+
+const { width, height } = Dimensions.get('window'); // Get screen width and height
 
 export default function App() {
     const [games, setGames] = useState([]);
@@ -32,16 +33,8 @@ export default function App() {
             setScores(data);
         });
 
-        // Commented out gameEnd socket event since we're handling game end locally
-        // socket.on('gameEnd', (data) => {
-        //     setGameEnded(true);
-        //     playVictorySound();
-        //     Alert.alert('Game Over', data.winner);
-        // });
-
         return () => {
             socket.off('scoreUpdate');
-            // socket.off('gameEnd');
         };
     }, []);
 
@@ -69,14 +62,14 @@ export default function App() {
             // Update the revealed state
             const updatedAnswers = question.answers.map((ans, idx) => {
                 if (idx === index) {
-                    return { ...ans, revealed: true }
+                    return { ...ans, revealed: true };
                 }
                 return ans;
             });
 
             const updatedQuestions = currentGame.questions.map((q, idx) => {
                 if (idx === currentQuestionIndex) {
-                    return { ...q, answers: updatedAnswers }
+                    return { ...q, answers: updatedAnswers };
                 }
                 return q;
             });
@@ -144,8 +137,6 @@ export default function App() {
         setGameWinner(winner);
         playVictorySound();
         Alert.alert('Game Over', winner);
-        // Optionally emit the endGame event if using sockets
-        // socket.emit('endGame', { winner });
     };
 
     const playVictorySound = async () => {
@@ -195,29 +186,22 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-            {/* Surgery Feud Title */}
             <View style={styles.titleContainer}>
                 <Text style={styles.titleText}>Surgery Feud</Text>
             </View>
 
-            {/* Main Content Area */}
             <View style={styles.mainContent}>
-                {/* Player Score Left */}
                 <View style={styles.playerScoreLeft}>
                     <View style={styles.playerScoreContainer}>
                         <Text style={styles.playerScoreText}>{scores.player1}</Text>
                     </View>
                 </View>
 
-                {/* Game Board */}
                 <View style={styles.gameBoard}>
-                    {/* Display the Question */}
                     <Text style={styles.questionText}>{currentQuestion.question}</Text>
-                    {/* Answer Boxes */}
                     <GameBoard answers={currentQuestion.answers} onRevealAnswer={onRevealAnswer} />
                 </View>
 
-                {/* Player Score Right */}
                 <View style={styles.playerScoreRight}>
                     <View style={styles.playerScoreContainer}>
                         <Text style={styles.playerScoreText}>{scores.player2}</Text>
@@ -225,7 +209,6 @@ export default function App() {
                 </View>
             </View>
 
-            {/* Bottom Interactive Area */}
             <View style={styles.bottomArea}>
                 <View style={styles.bottomRow}>
                     <Pressable
@@ -252,9 +235,7 @@ export default function App() {
                         <Text style={styles.playerText}>Player 2</Text>
                     </Pressable>
                 </View>
-                {/* Main Control Button */}
                 <RevealButton onRevealAll={onRevealAll} />
-                {/* End Game Button */}
                 <Pressable
                     style={({ pressed }) => [
                         styles.endGameButton,
@@ -277,6 +258,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#1B1F3B',
         alignItems: 'center',
+        justifyContent: 'center', // Ensure the content is centered vertically
     },
     titleContainer: {
         marginTop: 20,
@@ -285,7 +267,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         paddingHorizontal: 20,
         paddingVertical: 5,
-        backgroundColor: '#1B1F3B', // Added background color to match main board
+        backgroundColor: '#1B1F3B',
     },
     titleText: {
         fontSize: 32,
@@ -298,22 +280,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+        height: height * 0.5, // Ensure it uses half the screen's height
     },
     playerScoreLeft: {
-        position: 'absolute',
-        left: 0,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
-        paddingLeft: 10,
     },
     playerScoreRight: {
-        position: 'absolute',
-        right: 0,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
-        paddingRight: 10,
     },
     playerScoreContainer: {
         width: 60,
@@ -331,7 +310,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     gameBoard: {
-        width: '80%', // Adjusted width from '80%' to '90%'
+        width: '80%',
         backgroundColor: '#1B1F3B',
         borderRadius: 20,
         marginVertical: 20,
@@ -339,11 +318,11 @@ const styles = StyleSheet.create({
         borderColor: '#FFD700',
         alignItems: 'center',
         paddingVertical: 10,
+        height: height * 0.35, // Make sure game board fits
     },
     questionText: {
         color: '#FFFFFF',
-        fontSize: 26,
-        fontWeight: 'bold',
+        fontSize: 24,
         textAlign: 'center',
         marginVertical: 10,
     },
@@ -351,6 +330,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         marginTop: 10,
+        height: height * 0.2, // Adjust for bottom controls
     },
     bottomRow: {
         flexDirection: 'row',
@@ -375,11 +355,6 @@ const styles = StyleSheet.create({
     },
     playerButtonPressed: {
         opacity: 0.8,
-    },
-    playerText: {
-        color: '#FFFFFF',
-        fontSize: 18,
-        fontWeight: 'bold',
     },
     xButton: {
         width: '20%',
