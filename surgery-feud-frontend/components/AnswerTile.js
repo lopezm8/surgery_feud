@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Pressable, View, Text, StyleSheet, Animated, Easing } from 'react-native';
+import { Pressable, View, Text, StyleSheet, Animated, Easing, Dimensions } from 'react-native';
 import { Audio } from 'expo-av';
 import revealSound from '../assets/reveal_answer.wav';
+
+const { width } = Dimensions.get('window'); // Get screen width
 
 export default function AnswerTile({ index, answer, revealed, onReveal }) {
     const [flipAnimation] = useState(new Animated.Value(0));
@@ -85,14 +87,16 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                             <Text
                                 style={styles.answerText}
                                 adjustsFontSizeToFit
-                                numberOfLines={2} // Allow two lines for longer answers
-                                minimumFontScale={0.5} // Allow font size to scale down if necessary
+                                numberOfLines={2}
+                                minimumFontScale={0.5} // Allow font size to scale down to 50%
                             >
                                 {answer.answer.toUpperCase()}
                             </Text>
                         </View>
                         <View style={styles.pointsContainer}>
-                            <Text style={styles.pointsText}>{answer.points}</Text>
+                            <Text style={styles.pointsText} adjustsFontSizeToFit minimumFontScale={0.5}>
+                                {answer.points}
+                            </Text>
                         </View>
                     </Animated.View>
                 </View>
@@ -141,14 +145,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingLeft: 10,
-        paddingRight: 10, // Add padding for better alignment
+        paddingRight: 10,
     },
     answerText: {
         color: '#FFFFFF',
-        fontSize: 26,
+        fontSize: width * 0.04, // Dynamically scale font size
         fontWeight: 'bold',
         textAlign: 'center',
-        flexShrink: 1, // Ensure text doesn't overflow by shrinking it
+        flexShrink: 1,
     },
     pointsContainer: {
         backgroundColor: '#1B1F3B',
@@ -162,13 +166,13 @@ const styles = StyleSheet.create({
     },
     pointsText: {
         color: '#FFFFFF',
-        fontSize: 24,
+        fontSize: width * 0.03, // Dynamically scale font size
         fontWeight: 'bold',
         textAlign: 'center',
     },
     numberText: {
         color: '#FFFFFF',
-        fontSize: 36,
+        fontSize: width * 0.05, // Dynamically scale font size
         fontWeight: 'bold',
     },
     emptyTile: {

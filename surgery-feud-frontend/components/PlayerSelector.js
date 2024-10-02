@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Pressable, Text, StyleSheet } from 'react-native';
+import { View, Pressable, Text, StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window'); // Get screen width
 
 export default function PlayerSelector({ onSelectPlayer }) {
     return (
@@ -11,7 +13,9 @@ export default function PlayerSelector({ onSelectPlayer }) {
                 ]}
                 onPress={() => onSelectPlayer('player1')}
             >
-                <Text style={styles.playerText}> Rebel MDs </Text>
+                <Text style={styles.playerText} adjustsFontSizeToFit minimumFontScale={0.5}>
+                    Rebel MDs
+                </Text>
             </Pressable>
             <Pressable
                 style={({ pressed }) => [
@@ -20,7 +24,9 @@ export default function PlayerSelector({ onSelectPlayer }) {
                 ]}
                 onPress={() => onSelectPlayer('player2')}
             >
-                <Text style={styles.playerText}> Time Out Champions </Text>
+                <Text style={styles.playerText} adjustsFontSizeToFit minimumFontScale={0.5}>
+                    Time Out Champions
+                </Text>
             </Pressable>
         </View>
     );
@@ -44,7 +50,8 @@ const styles = StyleSheet.create({
     },
     playerText: {
         color: '#FFFFFF',
-        fontSize: 18,
+        fontSize: width * 0.04, // Dynamically scale font size
         fontWeight: 'bold',
+        textAlign: 'center',
     },
 });
