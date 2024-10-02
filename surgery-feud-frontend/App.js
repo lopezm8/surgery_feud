@@ -10,7 +10,6 @@ import RevealButton from './components/RevealButton';
 import RedXOverlay from './components/RedXOverlay';
 
 const { width, height } = Dimensions.get('window'); // Get screen width and height
-const dynamicFontSize = width < 360 ? width * 0.04 : 26;
 
 export default function App() {
     const [games, setGames] = useState([]);
@@ -267,6 +266,8 @@ export default function App() {
         </ScrollView>
     );
 }
+
+const dynamicFontSize = width < 360 ? width * 0.04 : 26;
 
 const styles = StyleSheet.create({
     container: {

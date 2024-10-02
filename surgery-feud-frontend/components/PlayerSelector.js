@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Pressable, Text, StyleSheet, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window'); // Get screen width
-const dynamicFontSize = width < 360 ? width * 0.04 : 24;
+
 
 export default function PlayerSelector({ onSelectPlayer }) {
     return (
@@ -32,6 +32,8 @@ export default function PlayerSelector({ onSelectPlayer }) {
         </View>
     );
 }
+
+const dynamicFontSize = width < 360 ? width * 0.04 : 24;
 
 const styles = StyleSheet.create({
     container: {

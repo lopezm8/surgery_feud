@@ -115,6 +115,8 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
     );
 }
 
+const dynamicFontSize = width < 360 ? width * 0.04 : 26;  // Smaller screens get a smaller font
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
