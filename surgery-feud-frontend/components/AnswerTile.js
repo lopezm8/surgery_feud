@@ -115,7 +115,7 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
     );
 }
 
-const dynamicFontSize = width < 360 ? width * 0.03 : 26;  // Smaller screens get a smaller font
+const dynamicFontSize = width < 360 ? width * 0.03 : 26; // Shrinks more aggressively on smaller screens
 
 const styles = StyleSheet.create({
     container: {
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 5, // Reduced padding to give more space
+        paddingHorizontal: 5, // Slightly reduced padding to prevent overflow
     },
     answerText: {
         color: '#FFFFFF',
@@ -162,8 +162,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         flexShrink: 1,
         fontSize: dynamicFontSize,
-        adjustsFontSizeToFit: true,
-        numberOfLines: 2,  // Ensure 2 lines max to prevent overflow
+        allowFontScaling: true,  // Allow font scaling based on container size
+        numberOfLines: 2,  // Allow up to 2 lines
+        ellipsizeMode: 'tail',
         minimumFontScale: 0.5,
     },
     pointsContainer: {
@@ -174,12 +175,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
-        width: 60,
-        paddingHorizontal: 5, 
+        width: width < 360 ? 50 : 60,  // Adjust width for smaller screens
+        paddingHorizontal: 5,
     },
     pointsText: {
         color: '#FFFFFF',
-        fontSize: dynamicFontSize,  
+        fontSize: width < 360 ? 16 : 20,  // Adjust font size for smaller screens
         fontWeight: 'bold',
         textAlign: 'center',
         adjustsFontSizeToFit: true,
@@ -188,10 +189,11 @@ const styles = StyleSheet.create({
     numberText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
-        fontSize: 26,  
+        fontSize: 26,  // Fixed font size for numbers
     },
     emptyTile: {
         backgroundColor: '#005BB5',
         borderRadius: 10,
     },
 });
+

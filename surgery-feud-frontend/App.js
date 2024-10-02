@@ -313,15 +313,15 @@ const styles = StyleSheet.create({
         marginLeft: 10, // Add margin between score and board
     },
     playerScoreContainer: {
-        width: 80,
-        height: 80,
+        width: width < 360 ? 60 : 80,  // Reduce size for smaller screens
+        height: width < 360 ? 60 : 80,  
         borderRadius: 10,
         backgroundColor: '#003F7D',
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 3,
         borderColor: '#FFD700',
-        marginHorizontal: 20,  // Increased margin to avoid overlap with the board
+        marginHorizontal: 20,  
     },
     playerScoreText: {
         color: '#FFFFFF',
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
         adjustsFontSizeToFit: true,
         minimumFontScale: 0.5,
         numberOfLines: 1,  
-        fontSize: dynamicFontSize,
+        fontSize: width < 360 ? 16 : 24,  // Shrink text for smaller screens
     },
     gameBoard: {
         width: '80%',
@@ -346,11 +346,12 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         textAlign: 'center',
         flexWrap: 'wrap',
-        adjustsFontSizeToFit: true, 
-        minimumFontScale: 0.5,  // Smaller scaling for smaller screens
-        numberOfLines: 2,  
-        paddingHorizontal: 15,  // Adjusted padding to prevent overflow
-        fontSize: dynamicFontSize, 
+        allowFontScaling: true,
+        adjustsFontSizeToFit: true,  // Ensure the question scales based on container size
+        minimumFontScale: 0.5,  // Allow scaling to a smaller size
+        numberOfLines: 2,  // Limit to 2 lines
+        paddingHorizontal: 15,  
+        fontSize: width < 360 ? 16 : 26,  // Shrink the font more on smaller screens
     },
     bottomArea: {
         width: '100%',
