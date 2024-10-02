@@ -63,7 +63,7 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
         ],
     };
 
-    const dynamicFontSize = width < 360 ? width * 0.04 : 26;  // Smaller screens get a smaller font
+    const dynamicFontSize = width < 500 ? width * 0.04 : 26;  // Smaller screens get a smaller font
 
     return (
         <Pressable onPress={flipTile} style={styles.container}>

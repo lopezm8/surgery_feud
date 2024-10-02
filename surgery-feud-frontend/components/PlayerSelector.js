@@ -45,7 +45,7 @@ export default function PlayerSelector({ onSelectPlayer }) {
     );
 }
 
-const dynamicFontSize = width < 360 ? width * 0.035 : 24;
+const dynamicFontSize = width < 500 ? width * 0.035 : 24;
 
 const styles = StyleSheet.create({
     container: {
