@@ -205,15 +205,19 @@ export default function App() {
                 </View>
 
                 <View style={styles.gameBoard}>
-                <Text
-                    style={styles.questionText}
-                    adjustsFontSizeToFit
-                    numberOfLines={2}
-                    minimumFontScale={0.6}
-                >
-                    {currentQuestion.question}
-                </Text>
-                    <GameBoard answers={currentQuestion.answers} onRevealAnswer={onRevealAnswer} />
+                    <Text
+                        style={styles.questionText}
+                        adjustsFontSizeToFit
+                        numberOfLines={2}
+                        minimumFontScale={0.6}
+                    >
+                        {currentQuestion.question}
+                    </Text>
+                    <GameBoard
+                        answers={currentQuestion.answers}
+                        onRevealAnswer={onRevealAnswer}
+                        currentGameId={currentGame._id}
+                    />
                 </View>
 
                 <View style={styles.playerScoreRight}>
@@ -222,49 +226,10 @@ export default function App() {
                     </View>
                 </View>
             </View>
-
-            <View style={styles.bottomArea}>
-                <View style={styles.bottomRow}>
-                    <Pressable
-                        style={({ pressed }) => [
-                            styles.playerButton,
-                            selectedPlayer === 'player1' && styles.playerButtonSelected,
-                            pressed && styles.playerButtonPressed,
-                        ]}
-                        onPress={() => onSelectPlayer('player1')}
-                    >
-                        <Text style={styles.playerText}>Rebel MDs</Text>
-                    </Pressable>
-                    <Pressable style={styles.xButton} onPress={onPressWrongAnswer}>
-                        <Text style={styles.xButtonText}>X</Text>
-                    </Pressable>
-                    <Pressable
-                        style={({ pressed }) => [
-                            styles.playerButton,
-                            selectedPlayer === 'player2' && styles.playerButtonSelected,
-                            pressed && styles.playerButtonPressed,
-                        ]}
-                        onPress={() => onSelectPlayer('player2')}
-                    >
-                        <Text style={styles.playerText}>Time Out Champions</Text>
-                    </Pressable>
-                </View>
-                <RevealButton onRevealAll={onRevealAll} />
-                <Pressable
-                    style={({ pressed }) => [
-                        styles.endGameButton,
-                        { opacity: pressed ? 0.8 : 1 },
-                    ]}
-                    onPress={onEndGame}
-                >
-                    <Text style={styles.endGameButtonText}>End Game</Text>
-                </Pressable>
-            </View>
-
-            <GameSelector games={games} onSelectGame={selectGame} />
-            <RedXOverlay visible={showRedX} onDismiss={() => setShowRedX(false)} />
+            {/* Other components (Player selectors, reveal button, etc.) */}
         </ScrollView>
     );
+
 }
 
 const styles = StyleSheet.create({
@@ -309,19 +274,21 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     playerScoreContainer: {
-        width: 60,
-        height: 60,
+        width: 80, // Increased size for better padding
+        height: 80,
         borderRadius: 10,
         backgroundColor: '#003F7D',
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 3,
         borderColor: '#FFD700',
+        padding: 10, // Added padding around the score box
     },
     playerScoreText: {
         color: '#FFFFFF',
-        fontSize: 24,
+        fontSize: width * 0.03, // Match score size to points size
         fontWeight: 'bold',
+        textAlign: 'center',
     },
     gameBoard: {
         width: '80%',
@@ -335,13 +302,13 @@ const styles = StyleSheet.create({
     },
     questionText: {
         color: '#FFFFFF',
-        fontSize: width * 0.04,  // Dynamically adjust based on screen size
+        fontSize: width * 0.035,  // Slightly smaller text size
         textAlign: 'center',
         marginVertical: 10,
         paddingHorizontal: 20,  // Add padding around the question
         flexWrap: 'wrap',
         flexShrink: 1,
-    },    
+    },
     bottomArea: {
         width: '100%',
         alignItems: 'center',

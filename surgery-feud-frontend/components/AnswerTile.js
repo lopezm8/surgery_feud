@@ -89,7 +89,7 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                                 adjustsFontSizeToFit
                                 numberOfLines={2}
                                 minimumFontScale={0.4} // Allow even smaller font size
-                                ellipsizeMode="tail" // Prevents cutting off mid-word, adding "..." instead
+                                ellipsizeMode="tail"
                             >
                                 {answer.answer.toUpperCase()}
                             </Text>
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     },
     answerText: {
         color: '#FFFFFF',
-        fontSize: width * 0.03, // Make font slightly smaller
+        fontSize: width * 0.028, // Make text smaller
         fontWeight: 'bold',
         textAlign: 'center',
         flexShrink: 1,
@@ -164,16 +164,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: '100%',
         width: 60,
+        padding: 5, // Add padding around points
     },
     pointsText: {
         color: '#FFFFFF',
-        fontSize: width * 0.025, // Slightly smaller font
+        fontSize: width * 0.03, // Slightly smaller font
         fontWeight: 'bold',
         textAlign: 'center',
     },
     numberText: {
         color: '#FFFFFF',
-        fontSize: width * 0.04, // Dynamically scale font size
+        fontSize: width * 0.035, // Dynamically scale font size
         fontWeight: 'bold',
     },
     emptyTile: {
