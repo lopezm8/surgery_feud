@@ -323,9 +323,11 @@ const styles = StyleSheet.create({
     },
     playerScoreText: {
         color: '#FFFFFF',
-        fontSize: width > 360 ? 26 : width * 0.05, // Adjust based on screen width
         fontWeight: 'bold',
         textAlign: 'center',
+        adjustsFontSizeToFit: true,
+        minimumFontScale: 0.5,
+        numberOfLines: 1, // Ensure score fits in one line
     },
     gameBoard: {
         width: '80%',
@@ -339,12 +341,12 @@ const styles = StyleSheet.create({
     },
     questionText: {
         color: '#FFFFFF',
-        fontSize: width > 360 ? 26 : width * 0.035,  // Dynamically adjust based on screen size
         textAlign: 'center',
-        marginVertical: 10,
+        flexWrap: 'wrap',  // Allow wrapping on spaces
+        adjustsFontSizeToFit: true,
+        minimumFontScale: 0.6,
+        numberOfLines: 2,  // Limit to two lines
         paddingHorizontal: 20,  // Add padding around the question
-        flexWrap: 'wrap',
-        flexShrink: 1,
     },
     bottomArea: {
         width: '100%',

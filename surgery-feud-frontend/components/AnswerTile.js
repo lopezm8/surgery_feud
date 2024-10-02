@@ -3,8 +3,6 @@ import { Pressable, View, Text, StyleSheet, Animated, Easing, Dimensions } from 
 import { Audio } from 'expo-av';
 import revealSound from '../assets/reveal_answer.wav';
 
-const { width } = Dimensions.get('window'); // Get screen width
-
 export default function AnswerTile({ index, answer, revealed, onReveal }) {
     const [flipAnimation] = useState(new Animated.Value(0));
 
@@ -88,14 +86,19 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                                 style={styles.answerText}
                                 adjustsFontSizeToFit
                                 numberOfLines={2}
-                                minimumFontScale={0.6} // Allow even smaller font size if needed
+                                minimumFontScale={0.5}
                                 ellipsizeMode="tail"
                             >
                                 {answer.answer.toUpperCase()}
                             </Text>
                         </View>
                         <View style={styles.pointsContainer}>
-                            <Text style={styles.pointsText} adjustsFontSizeToFit minimumFontScale={0.6}>
+                            <Text 
+                                style={styles.pointsText} 
+                                adjustsFontSizeToFit 
+                                minimumFontScale={0.6} 
+                                numberOfLines={1}  // Ensure points fit in one line
+                            >
                                 {answer.points}
                             </Text>
                         </View>
@@ -150,11 +153,10 @@ const styles = StyleSheet.create({
     },
     answerText: {
         color: '#FFFFFF',
-        fontSize: width > 360 ? 26 : width * 0.03,  // Dynamically adjust font size
-        fontWeight: 'bold',
         textAlign: 'center',
+        fontWeight: 'bold',
         flexShrink: 1,
-        flexWrap: 'wrap',  // Allow text to wrap when needed
+        flexWrap: 'wrap',  // Allow wrapping based on spaces
     },
     pointsContainer: {
         backgroundColor: '#1B1F3B',
@@ -169,13 +171,11 @@ const styles = StyleSheet.create({
     },
     pointsText: {
         color: '#FFFFFF',
-        fontSize: width > 360 ? 26 : width * 0.03,  // Adjust based on screen width
         fontWeight: 'bold',
         textAlign: 'center',
     },
     numberText: {
         color: '#FFFFFF',
-        fontSize: width > 360 ? 26 : width * 0.04, // Adjust based on screen width
         fontWeight: 'bold',
     },
     emptyTile: {
