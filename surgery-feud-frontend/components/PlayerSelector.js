@@ -55,5 +55,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         adjustsFontSizeToFit: true,
         minimumFontScale: 0.5,
+        numberOfLines: 1,
+        fontSize: width < 360 ? width * 0.035 : 26,  // Adjust font size dynamically
     },
 });

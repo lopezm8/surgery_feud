@@ -3,6 +3,8 @@ import { Pressable, View, Text, StyleSheet, Animated, Easing, Dimensions } from 
 import { Audio } from 'expo-av';
 import revealSound from '../assets/reveal_answer.wav';
 
+const { width } = Dimensions.get('window'); // Get screen width
+
 export default function AnswerTile({ index, answer, revealed, onReveal }) {
     const [flipAnimation] = useState(new Animated.Value(0));
 
@@ -58,6 +60,8 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
         ],
     };
 
+    const dynamicFontSize = width < 360 ? width * 0.04 : 26;  // Smaller screens get a smaller font
+
     return (
         <Pressable onPress={flipTile} style={styles.container}>
             {isFlippable ? (
@@ -83,10 +87,10 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                     >
                         <View style={styles.answerContainer}>
                             <Text
-                                style={styles.answerText}
+                                style={[styles.answerText, { fontSize: dynamicFontSize }]}  // Use dynamic font size
                                 adjustsFontSizeToFit
                                 numberOfLines={2}
-                                minimumFontScale={0.5}
+                                minimumFontScale={0.6}
                                 ellipsizeMode="tail"
                             >
                                 {answer.answer.toUpperCase()}
@@ -94,10 +98,10 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                         </View>
                         <View style={styles.pointsContainer}>
                             <Text 
-                                style={styles.pointsText} 
+                                style={[styles.pointsText, { fontSize: dynamicFontSize }]}  // Use dynamic font size
                                 adjustsFontSizeToFit 
-                                minimumFontScale={0.6} 
-                                numberOfLines={1}  // Ensure points fit in one line
+                                minimumFontScale={0.6}
+                                numberOfLines={1}
                             >
                                 {answer.points}
                             </Text>
@@ -156,7 +160,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         flexShrink: 1,
-        flexWrap: 'wrap',  // Allow wrapping based on spaces
+        flexWrap: 'wrap',
     },
     pointsContainer: {
         backgroundColor: '#1B1F3B',
@@ -167,7 +171,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: '100%',
         width: 60,
-        padding: 5, // Padding around points
+        padding: 5,
     },
     pointsText: {
         color: '#FFFFFF',
@@ -177,6 +181,7 @@ const styles = StyleSheet.create({
     numberText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
+        fontSize: 26,  // Fixed font size for numbers
     },
     emptyTile: {
         backgroundColor: '#005BB5',

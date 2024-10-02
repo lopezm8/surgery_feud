@@ -327,7 +327,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         adjustsFontSizeToFit: true,
         minimumFontScale: 0.5,
-        numberOfLines: 1, // Ensure score fits in one line
+        numberOfLines: 1,
+        fontSize: width < 360 ? width * 0.04 : 26,  // Adjust score font size dynamically
     },
     gameBoard: {
         width: '80%',
@@ -342,11 +343,12 @@ const styles = StyleSheet.create({
     questionText: {
         color: '#FFFFFF',
         textAlign: 'center',
-        flexWrap: 'wrap',  // Allow wrapping on spaces
+        flexWrap: 'wrap',
         adjustsFontSizeToFit: true,
         minimumFontScale: 0.6,
-        numberOfLines: 2,  // Limit to two lines
-        paddingHorizontal: 20,  // Add padding around the question
+        numberOfLines: 2,
+        paddingHorizontal: 20,
+        fontSize: width < 360 ? width * 0.04 : 26,  // Adjust question font size dynamically
     },
     bottomArea: {
         width: '100%',
