@@ -88,14 +88,14 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                                 style={styles.answerText}
                                 adjustsFontSizeToFit
                                 numberOfLines={2}
-                                minimumFontScale={0.4} // Allow even smaller font size
+                                minimumFontScale={0.6} // Allow even smaller font size if needed
                                 ellipsizeMode="tail"
                             >
                                 {answer.answer.toUpperCase()}
                             </Text>
                         </View>
                         <View style={styles.pointsContainer}>
-                            <Text style={styles.pointsText} adjustsFontSizeToFit minimumFontScale={0.5}>
+                            <Text style={styles.pointsText} adjustsFontSizeToFit minimumFontScale={0.6}>
                                 {answer.points}
                             </Text>
                         </View>
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     },
     answerText: {
         color: '#FFFFFF',
-        fontSize: width * 0.028, // Make text smaller
+        fontSize: width > 360 ? 26 : width * 0.04,  // Dynamically adjust font size
         fontWeight: 'bold',
         textAlign: 'center',
         flexShrink: 1,
@@ -164,17 +164,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: '100%',
         width: 60,
-        padding: 5, // Add padding around points
+        padding: 5, // Padding around points
     },
     pointsText: {
         color: '#FFFFFF',
-        fontSize: width * 0.03, // Slightly smaller font
+        fontSize: width > 360 ? 26 : width * 0.03,  // Adjust based on screen width
         fontWeight: 'bold',
         textAlign: 'center',
     },
     numberText: {
         color: '#FFFFFF',
-        fontSize: width * 0.035, // Dynamically scale font size
+        fontSize: width > 360 ? 26 : width * 0.04, // Adjust based on screen width
         fontWeight: 'bold',
     },
     emptyTile: {
