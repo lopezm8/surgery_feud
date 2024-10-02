@@ -111,32 +111,47 @@ export default function App() {
         }
     };
 
-    const onRevealAll = () => {
+    const onRevealAll = async () => {
         const question = currentGame.questions[currentQuestionIndex];
-
+    
         const updatedAnswers = question.answers.map(ans => {
             if (!ans.revealed) {
                 return { ...ans, revealed: true };
             }
             return ans;
         });
-
+    
         const updatedQuestions = currentGame.questions.map((q, idx) => {
             if (idx === currentQuestionIndex) {
                 return { ...q, answers: updatedAnswers };
             }
             return q;
         });
-
+    
         setCurrentGame({ ...currentGame, questions: updatedQuestions });
+    
+        // Load and play the reveal answer sound
+        try {
+            const { sound: revealSound } = await Audio.Sound.createAsync(
+                require('./assets/reveal_answer.wav')
+            );
+            await revealSound.playAsync();
+            revealSound.setOnPlaybackStatusUpdate(status => {
+                if (!status.isPlaying) {
+                    revealSound.unloadAsync(); // Unload the sound after it plays
+                }
+            });
+        } catch (error) {
+            console.error("Error playing reveal answer sound:", error);
+        }
     };
 
     const onEndGame = () => {
         let winner;
         if (scores.player1 > scores.player2) {
-            winner = 'Player 1 Wins!';
+            winner = 'Rebel MDs Win!';
         } else if (scores.player2 > scores.player1) {
-            winner = 'Player 2 Wins!';
+            winner = 'Time Out Champions Win!';
         } else {
             winner = 'It\'s a tie!';
         }
@@ -179,8 +194,8 @@ export default function App() {
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>Game Over!</Text>
                 </View>
-                <Text style={styles.score}>Player 1: {scores.player1}</Text>
-                <Text style={styles.score}>Player 2: {scores.player2}</Text>
+                <Text style={styles.score}>Rebel MDs: {scores.player1}</Text>
+                <Text style={styles.score}>Time Out Champions: {scores.player2}</Text>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>{gameWinner}</Text>
                 </View>
@@ -226,7 +241,7 @@ export default function App() {
                         ]}
                         onPress={() => onSelectPlayer('player1')}
                     >
-                        <Text style={styles.playerText}>Player 1</Text>
+                        <Text style={styles.playerText}>Rebel MDs</Text>
                     </Pressable>
                     <Pressable style={styles.xButton} onPress={onPressWrongAnswer}>
                         <Text style={styles.xButtonText}>X</Text>
@@ -239,7 +254,7 @@ export default function App() {
                         ]}
                         onPress={() => onSelectPlayer('player2')}
                     >
-                        <Text style={styles.playerText}>Player 2</Text>
+                        <Text style={styles.playerText}>Time Out Champions</Text>
                     </Pressable>
                 </View>
                 <RevealButton onRevealAll={onRevealAll} />
@@ -361,6 +376,12 @@ const styles = StyleSheet.create({
     },
     playerButtonPressed: {
         opacity: 0.8,
+    },
+    playerText: {
+        color: '#FFFFFF', 
+        fontSize: 18,  
+        fontWeight: 'bold',  
+        textAlign: 'center',  
     },
     xButton: {
         width: '20%',
