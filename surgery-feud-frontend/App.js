@@ -301,14 +301,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
-        marginRight: 15, // Add margin between score and board
+        marginRight: 10, // Add margin between score and board
     },
     playerScoreRight: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
-        marginLeft: 15, // Add margin between score and board
+        marginLeft: 10, // Add margin between score and board
     },
     playerScoreContainer: {
         width: 80,
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     },
     questionText: {
         color: '#FFFFFF',
-        fontSize: width > 360 ? 26 : width * 0.05,  // Dynamically adjust based on screen size
+        fontSize: width > 360 ? 26 : width * 0.035,  // Dynamically adjust based on screen size
         textAlign: 'center',
         marginVertical: 10,
         paddingHorizontal: 20,  // Add padding around the question
@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
     },
     playerText: {
         color: '#FFFFFF', 
-        fontSize: 24,  
+        fontSize: width > 360 ? 26 : width * 0.04,  
         fontWeight: 'bold',  
         textAlign: 'center',  
     },

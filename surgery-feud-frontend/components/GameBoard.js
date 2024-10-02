@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between',
         marginTop: 10,
+        marginLeft: 5,
+        marginRight: 5,
     },
     column: {
         flex: 1,
