@@ -26,13 +26,11 @@ const seedGames = [
         title: 'Surgery Feud Game 1',
         questions: [
             {
-                question: 'Common Reasons for Surgery',
+                question: 'What are the three minimum requirements for the Time Out?',
                 answers: [
-                    { answer: 'Appendicitis', points: 30, revealed: false },
-                    { answer: 'Gallstones', points: 25, revealed: false },
-                    { answer: 'Hernia', points: 20, revealed: false },
-                    { answer: 'Gallbladder Removal', points: 15, revealed: false },
-                    { answer: 'Others', points: 10, revealed: false },
+                    { answer: 'Patient Name', points: 45, revealed: false },
+                    { answer: 'Procedure', points: 35, revealed: false },
+                    { answer: 'Side/Site', points: 20, revealed: false },
                 ]
             },
             // Add more questions if desired
@@ -42,12 +40,12 @@ const seedGames = [
         title: 'Surgery Feud Game 2',
         questions: [
             {
-                question: 'Types of Anesthesia',
+                question: 'Who are the participants of the Time Out?',
                 answers: [
-                    { answer: 'General', points: 40, revealed: false },
-                    { answer: 'Local', points: 30, revealed: false },
-                    { answer: 'Regional', points: 20, revealed: false },
-                    { answer: 'Sedation', points: 10, revealed: false },
+                    { answer: 'Surgeon', points: 35, revealed: false },
+                    { answer: 'Anesthesia', points: 25, revealed: false },
+                    { answer: 'Nurse', points: 20, revealed: false },
+                    { answer: 'Surgical Tech', points: 20, revealed: false },
                 ]
             },
             // Add more questions if desired
@@ -57,13 +55,37 @@ const seedGames = [
         title: 'Surgery Feud Game 3',
         questions: [
             {
-                question: 'Post-Surgery Instructions',
+                question: 'What was the initial overall Time Out compliance in January 2024?',
                 answers: [
-                    { answer: 'Rest', points: 35, revealed: false },
-                    { answer: 'Medications', points: 25, revealed: false },
-                    { answer: 'Follow-up Visit', points: 20, revealed: false },
-                    { answer: 'Dietary Restrictions', points: 15, revealed: false },
-                    { answer: 'Wound Care', points: 5, revealed: false },
+                    { answer: '23%', points: 100, revealed: false },
+                ]
+            },
+            // Add more questions if desired
+        ]
+    },
+    {
+        title: 'Surgery Feud Game 4',
+        questions: [
+            {
+                question: 'How much does it cost the organization for wrong site surgery?',
+                answers: [
+                    { answer: '$136,000', points: 100, revealed: false },
+                ]
+            },
+            // Add more questions if desired
+        ]
+    },
+    {
+        title: 'Surgery Feud Game 5',
+        questions: [
+            {
+                question: 'Name one intervention the O.R. Team implemented in Quarter 2.',
+                answers: [
+                    { answer: 'Standardized the Time Out process', points: 35, revealed: false },
+                    { answer: 'Educated staff on Time Out elements', points: 25, revealed: false },
+                    { answer: 'Placed magnets with T.O. elements on whiteboards', points: 20, revealed: false },
+                    { answer: 'Turned off music during T.O.', points: 15, revealed: false },
+                    { answer: 'Defined roles for the OR team', points: 5, revealed: false },
                 ]
             },
             // Add more questions if desired
