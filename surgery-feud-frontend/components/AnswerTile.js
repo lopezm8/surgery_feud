@@ -115,7 +115,7 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
     );
 }
 
-const dynamicFontSize = width < 360 ? width * 0.04 : 26;  // Smaller screens get a smaller font
+const dynamicFontSize = width < 360 ? width * 0.035 : 26;  // Smaller screens get a smaller font
 
 const styles = StyleSheet.create({
     container: {
@@ -162,8 +162,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         flexShrink: 1,
-        flexWrap: 'wrap',
-        fontSize: dynamicFontSize, // Adjust the font size dynamically
+        flexWrap: 'wrap',  
+        fontSize: dynamicFontSize,
+        adjustsFontSizeToFit: true,
+        numberOfLines: 2,  // Allow up to 2 lines of text
+        minimumFontScale: 0.5,
     },
     // Add more padding and adjust width for small screens
     pointsContainer: {
@@ -179,11 +182,11 @@ const styles = StyleSheet.create({
     },
     pointsText: {
         color: '#FFFFFF',
+        fontSize: dynamicFontSize,  // Use dynamic font size
         fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: dynamicFontSize, // Adjust the font size dynamically
-        adjustsFontSizeToFit: true, // Ensure the font shrinks to fit the container
-        minimumFontScale: 0.5, // Allow font to scale down as necessary
+        adjustsFontSizeToFit: true,
+        minimumFontScale: 0.5,
     },
     numberText: {
         color: '#FFFFFF',

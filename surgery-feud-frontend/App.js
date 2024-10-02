@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 3,
         borderColor: '#FFD700',
-        margin: 10, // Add margin around score container to prevent overlap
+        marginHorizontal: 15,  // Add margin to prevent overlap with the board
     },
     playerScoreText: {
         color: '#FFFFFF',
@@ -346,11 +346,11 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         textAlign: 'center',
         flexWrap: 'wrap',
-        adjustsFontSizeToFit: true, // Ensure the question fits the container
+        adjustsFontSizeToFit: true, 
         minimumFontScale: 0.6,
-        numberOfLines: 2, // Limit the question to 2 lines
+        numberOfLines: 2,  // Limit to 2 lines
         paddingHorizontal: 20,
-        fontSize: dynamicFontSize, // Adjust the font size dynamically
+        fontSize: dynamicFontSize,
     },
     bottomArea: {
         width: '100%',

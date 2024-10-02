@@ -33,7 +33,7 @@ export default function PlayerSelector({ onSelectPlayer }) {
     );
 }
 
-const dynamicFontSize = width < 360 ? width * 0.04 : 24;
+const dynamicFontSize = width < 360 ? width * 0.035 : 24;
 
 const styles = StyleSheet.create({
     container: {
@@ -55,10 +55,10 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingHorizontal: 12, // Increase padding to prevent overflow
+        paddingHorizontal: 15,  // Increase padding to prevent overflow
         adjustsFontSizeToFit: true,
         minimumFontScale: 0.5,
-        numberOfLines: 1, // Prevent text from wrapping into multiple lines
-        fontSize: dynamicFontSize, // Dynamic size based on screen width
+        numberOfLines: 1, 
+        fontSize: dynamicFontSize,
     },
 });
