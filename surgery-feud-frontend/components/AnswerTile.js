@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         flexShrink: 1,
+        flexWrap: 'wrap',  // Allow text to wrap when needed
     },
     pointsContainer: {
         backgroundColor: '#1B1F3B',

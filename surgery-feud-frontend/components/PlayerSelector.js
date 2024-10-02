@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
         fontSize: width * 0.035, // Slightly smaller font size
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingHorizontal: 5,  // Add padding around text
+        paddingHorizontal: 10,  // Add padding around text
     },
 });

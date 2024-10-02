@@ -301,12 +301,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
+        marginRight: 10, // Add margin between score and board
     },
     playerScoreRight: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
+        marginLeft: 10, // Add margin between score and board
     },
     playerScoreContainer: {
         width: 80,
