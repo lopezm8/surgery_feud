@@ -50,8 +50,9 @@ const styles = StyleSheet.create({
     },
     playerText: {
         color: '#FFFFFF',
-        fontSize: width * 0.04, // Dynamically scale font size
+        fontSize: width * 0.035, // Slightly smaller font size
         fontWeight: 'bold',
         textAlign: 'center',
+        paddingHorizontal: 5,  // Add padding around text
     },
 });

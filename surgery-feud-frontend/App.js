@@ -205,7 +205,14 @@ export default function App() {
                 </View>
 
                 <View style={styles.gameBoard}>
-                    <Text style={styles.questionText} adjustsFontSizeToFit numberOfLines={2}>{currentQuestion.question}</Text>
+                <Text
+                    style={styles.questionText}
+                    adjustsFontSizeToFit
+                    numberOfLines={2}
+                    minimumFontScale={0.6}
+                >
+                    {currentQuestion.question}
+                </Text>
                     <GameBoard answers={currentQuestion.answers} onRevealAnswer={onRevealAnswer} />
                 </View>
 
@@ -328,11 +335,13 @@ const styles = StyleSheet.create({
     },
     questionText: {
         color: '#FFFFFF',
-        fontSize: 24,
+        fontSize: width * 0.04,  // Dynamically adjust based on screen size
         textAlign: 'center',
         marginVertical: 10,
+        paddingHorizontal: 20,  // Add padding around the question
         flexWrap: 'wrap',
-    },
+        flexShrink: 1,
+    },    
     bottomArea: {
         width: '100%',
         alignItems: 'center',

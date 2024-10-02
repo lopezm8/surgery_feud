@@ -88,7 +88,8 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                                 style={styles.answerText}
                                 adjustsFontSizeToFit
                                 numberOfLines={2}
-                                minimumFontScale={0.5} // Allow font size to scale down to 50%
+                                minimumFontScale={0.4} // Allow even smaller font size
+                                ellipsizeMode="tail" // Prevents cutting off mid-word, adding "..." instead
                             >
                                 {answer.answer.toUpperCase()}
                             </Text>
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     },
     answerText: {
         color: '#FFFFFF',
-        fontSize: width * 0.04, // Dynamically scale font size
+        fontSize: width * 0.03, // Make font slightly smaller
         fontWeight: 'bold',
         textAlign: 'center',
         flexShrink: 1,
@@ -166,13 +167,13 @@ const styles = StyleSheet.create({
     },
     pointsText: {
         color: '#FFFFFF',
-        fontSize: width * 0.03, // Dynamically scale font size
+        fontSize: width * 0.025, // Slightly smaller font
         fontWeight: 'bold',
         textAlign: 'center',
     },
     numberText: {
         color: '#FFFFFF',
-        fontSize: width * 0.05, // Dynamically scale font size
+        fontSize: width * 0.04, // Dynamically scale font size
         fontWeight: 'bold',
     },
     emptyTile: {
