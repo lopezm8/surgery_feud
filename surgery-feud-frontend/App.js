@@ -313,16 +313,16 @@ const styles = StyleSheet.create({
         marginLeft: 10, // Add margin between score and board
     },
     playerScoreContainer: {
-        width: width < 360 ? 60 : 80,  // Reduce size for smaller screens
-        height: width < 360 ? 60 : 80,  
+        width: width < 360 ? 50 : 80,  // Reduce size for smaller screens
+        height: width < 360 ? 50 : 80,  
         borderRadius: 10,
         backgroundColor: '#003F7D',
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 3,
         borderColor: '#FFD700',
-        marginHorizontal: 20,  
-    },
+        marginHorizontal: width < 360 ? 5 : 20,  // Adjust margins for small screens
+    },    
     playerScoreText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
@@ -346,13 +346,12 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         textAlign: 'center',
         flexWrap: 'wrap',
-        allowFontScaling: true,
-        adjustsFontSizeToFit: true,  // Ensure the question scales based on container size
-        minimumFontScale: 0.5,  // Allow scaling to a smaller size
-        numberOfLines: 2,  // Limit to 2 lines
-        paddingHorizontal: 15,  
-        fontSize: width < 360 ? 16 : 26,  // Shrink the font more on smaller screens
-    },
+        adjustsFontSizeToFit: true,  // Ensure the question fits the container
+        minimumFontScale: 0.5,  // Shrink to fit the container
+        numberOfLines: 3,  // Limit wrapping to 3 lines
+        paddingHorizontal: 10,  // Reduce padding to prevent overflow
+        fontSize: width < 360 ? 14 : 26,  // Smaller font size for smaller screens
+    },    
     bottomArea: {
         width: '100%',
         alignItems: 'center',
@@ -384,10 +383,13 @@ const styles = StyleSheet.create({
     },
     playerText: {
         color: '#FFFFFF', 
-        fontSize: width > 360 ? 26 : width * 0.04,  
-        fontWeight: 'bold',  
-        textAlign: 'center',  
-    },
+        fontWeight: 'bold',
+        textAlign: 'center',
+        numberOfLines: 1,  // Ensure no text wrapping
+        fontSize: width > 360 ? 26 : width * 0.03,  // Smaller size for smaller screens
+        adjustsFontSizeToFit: true,
+        minimumFontScale: 0.4,  // Shrink font aggressively on smaller screens
+    },    
     xButton: {
         width: '20%',
         backgroundColor: '#FFFFFF',

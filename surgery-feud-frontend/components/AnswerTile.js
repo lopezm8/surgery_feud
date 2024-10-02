@@ -160,12 +160,12 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         textAlign: 'center',
         fontWeight: 'bold',
-        flexShrink: 1,
         fontSize: dynamicFontSize,
-        allowFontScaling: true,  // Allow font scaling based on container size
-        numberOfLines: 2,  // Allow up to 2 lines
+        allowFontScaling: true,  // Allow font scaling
+        adjustsFontSizeToFit: true,  // Ensure font fits within the tile
+        minimumFontScale: 0.4,  // Shrink aggressively for smaller tiles
+        numberOfLines: 1,  // Ensure no text wrapping
         ellipsizeMode: 'tail',
-        minimumFontScale: 0.5,
     },
     pointsContainer: {
         backgroundColor: '#1B1F3B',

@@ -52,13 +52,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     playerText: {
-        color: '#FFFFFF',
+        color: '#FFFFFF', 
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingHorizontal: 10,  
+        numberOfLines: 1,  // Ensure no text wrapping
+        fontSize: width > 360 ? 26 : width * 0.03,  // Smaller size for smaller screens
         adjustsFontSizeToFit: true,
-        minimumFontScale: 0.5,
-        numberOfLines: 1,  
-        fontSize: dynamicFontSize, 
-    },
+        minimumFontScale: 0.4,  // Shrink font aggressively on smaller screens
+    },       
 });
