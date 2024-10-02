@@ -11,7 +11,7 @@ export default function PlayerSelector({ onSelectPlayer }) {
                 ]}
                 onPress={() => onSelectPlayer('player1')}
             >
-                <Text style={styles.playerText}>Player 1</Text>
+                <Text style={styles.playerText}> Rebel MDs </Text>
             </Pressable>
             <Pressable
                 style={({ pressed }) => [
@@ -20,7 +20,7 @@ export default function PlayerSelector({ onSelectPlayer }) {
                 ]}
                 onPress={() => onSelectPlayer('player2')}
             >
-                <Text style={styles.playerText}>Player 2</Text>
+                <Text style={styles.playerText}> Time Out Champions </Text>
             </Pressable>
         </View>
     );
@@ -38,4 +38,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#005BB5',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor:
+        borderColor: '#FFD700',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    playerText: {
+        color: '#FFFFFF',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+});
