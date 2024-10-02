@@ -14,7 +14,13 @@ export default function PlayerSelector({ onSelectPlayer }) {
                 ]}
                 onPress={() => onSelectPlayer('player1')}
             >
-                <Text style={styles.playerText} adjustsFontSizeToFit minimumFontScale={0.5}>
+                <Text
+                    style={styles.playerText}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.6}
+                    numberOfLines={2}
+                    ellipsizeMode="tail"
+                >
                     Rebel MDs
                 </Text>
             </Pressable>
@@ -25,7 +31,13 @@ export default function PlayerSelector({ onSelectPlayer }) {
                 ]}
                 onPress={() => onSelectPlayer('player2')}
             >
-                <Text style={styles.playerText} adjustsFontSizeToFit minimumFontScale={0.5}>
+                <Text
+                    style={styles.playerText}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.6}
+                    numberOfLines={2}
+                    ellipsizeMode="tail"
+                >
                     Time Out Champions
                 </Text>
             </Pressable>
@@ -52,12 +64,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     playerText: {
-        color: '#FFFFFF', 
+        color: '#FFFFFF',
         fontWeight: 'bold',
         textAlign: 'center',
-        numberOfLines: 1,  // Ensure no text wrapping
-        fontSize: width > 360 ? 26 : width * 0.03,  // Smaller size for smaller screens
+        fontSize: 26, // Desired font size if possible
         adjustsFontSizeToFit: true,
-        minimumFontScale: 0.4,  // Shrink font aggressively on smaller screens
-    },       
+        minimumFontScale: 0.6, // Adjust if font needs to be smaller
+        numberOfLines: 2, // Allow text to wrap
+        ellipsizeMode: 'tail',
+    },     
 });

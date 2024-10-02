@@ -10,6 +10,7 @@ import RevealButton from './components/RevealButton';
 import RedXOverlay from './components/RedXOverlay';
 
 const { width, height } = Dimensions.get('window'); // Get screen width and height
+const isSmallScreen = width < 500; // Adjusted the threshold based on your screen size
 
 export default function App() {
     const [games, setGames] = useState([]);
@@ -224,31 +225,31 @@ export default function App() {
             </View>
 
             <View style={styles.bottomArea}>
-                <View style={styles.bottomRow}>
-                    <Pressable
-                        style={({ pressed }) => [
-                            styles.playerButton,
-                            selectedPlayer === 'player1' && styles.playerButtonSelected,
-                            pressed && styles.playerButtonPressed,
-                        ]}
-                        onPress={() => onSelectPlayer('player1')}
-                    >
-                        <Text style={styles.playerText}>Rebel MDs</Text>
-                    </Pressable>
-                    <Pressable style={styles.xButton} onPress={onPressWrongAnswer}>
-                        <Text style={styles.xButtonText}>X</Text>
-                    </Pressable>
-                    <Pressable
-                        style={({ pressed }) => [
-                            styles.playerButton,
-                            selectedPlayer === 'player2' && styles.playerButtonSelected,
-                            pressed && styles.playerButtonPressed,
-                        ]}
-                        onPress={() => onSelectPlayer('player2')}
-                    >
-                        <Text style={styles.playerText}>Time Out Champions</Text>
-                    </Pressable>
-                </View>
+            <View style={styles.bottomRow}>
+                <Pressable
+                    style={({ pressed }) => [
+                        styles.playerButton,
+                        selectedPlayer === 'player1' && styles.playerButtonSelected,
+                        pressed && styles.playerButtonPressed,
+                    ]}
+                    onPress={() => onSelectPlayer('player1')}
+                >
+                    <Text style={styles.playerText}>Rebel MDs</Text>
+                </Pressable>
+                <Pressable style={styles.xButton} onPress={onPressWrongAnswer}>
+                    <Text style={styles.xButtonText}>X</Text>
+                </Pressable>
+                <Pressable
+                    style={({ pressed }) => [
+                        styles.playerButton,
+                        selectedPlayer === 'player2' && styles.playerButtonSelected,
+                        pressed && styles.playerButtonPressed,
+                    ]}
+                    onPress={() => onSelectPlayer('player2')}
+                >
+                    <Text style={styles.playerText}>Time Out Champions</Text>
+                </Pressable>
+            </View>
                 <RevealButton onRevealAll={onRevealAll} />
                 <Pressable
                     style={({ pressed }) => [
@@ -297,6 +298,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
         paddingVertical: 10,
+        flexWrap: 'wrap', // Added to prevent overlapping
     },
     playerScoreLeft: {
         flex: 1,
@@ -333,7 +335,7 @@ const styles = StyleSheet.create({
         fontSize: width < 360 ? 16 : 24,  // Shrink text for smaller screens
     },
     gameBoard: {
-        width: '80%',
+        width: isSmallScreen ? '100%' : '80%', // Adjusted width based on screen size
         backgroundColor: '#1B1F3B',
         borderRadius: 20,
         marginVertical: 20,
@@ -382,14 +384,15 @@ const styles = StyleSheet.create({
         opacity: 0.8,
     },
     playerText: {
-        color: '#FFFFFF', 
+        color: '#FFFFFF',
         fontWeight: 'bold',
         textAlign: 'center',
-        numberOfLines: 1,  // Ensure no text wrapping
-        fontSize: width > 360 ? 26 : width * 0.03,  // Smaller size for smaller screens
+        fontSize: 26, // Desired font size if possible
         adjustsFontSizeToFit: true,
-        minimumFontScale: 0.4,  // Shrink font aggressively on smaller screens
-    },    
+        minimumFontScale: 0.6, // Adjust if font needs to be smaller
+        numberOfLines: 2, // Allow text to wrap
+        ellipsizeMode: 'tail',
+    },
     xButton: {
         width: '20%',
         backgroundColor: '#FFFFFF',

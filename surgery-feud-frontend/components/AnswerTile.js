@@ -5,6 +5,9 @@ import revealSound from '../assets/reveal_answer.wav';
 
 const { width } = Dimensions.get('window'); // Get screen width
 
+// Adjust dynamicFontSize to smoothly scale based on screen width
+const dynamicFontSize = Math.min(26, width * 0.05);
+
 export default function AnswerTile({ index, answer, revealed, onReveal }) {
     const [flipAnimation] = useState(new Animated.Value(0));
 
@@ -90,7 +93,7 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                                 style={[styles.answerText, { fontSize: dynamicFontSize }]}  // Use dynamic font size
                                 adjustsFontSizeToFit
                                 numberOfLines={2}
-                                minimumFontScale={0.6}
+                                minimumFontScale={0.5}
                                 ellipsizeMode="tail"
                             >
                                 {answer.answer.toUpperCase()}
@@ -115,7 +118,6 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
     );
 }
 
-const dynamicFontSize = width < 360 ? width * 0.03 : 26; // Shrinks more aggressively on smaller screens
 
 const styles = StyleSheet.create({
     container: {
@@ -161,11 +163,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: dynamicFontSize,
-        allowFontScaling: true,  // Allow font scaling
-        adjustsFontSizeToFit: true,  // Ensure font fits within the tile
-        minimumFontScale: 0.4,  // Shrink aggressively for smaller tiles
-        numberOfLines: 1,  // Ensure no text wrapping
-        ellipsizeMode: 'tail',
+        allowFontScaling: true,
+        adjustsFontSizeToFit: true,
+        minimumFontScale: 0.5,
     },
     pointsContainer: {
         backgroundColor: '#1B1F3B',
