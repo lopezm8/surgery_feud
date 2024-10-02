@@ -111,39 +111,24 @@ export default function App() {
         }
     };
 
-    const onRevealAll = async () => {
+    const onRevealAll = () => {
         const question = currentGame.questions[currentQuestionIndex];
-    
+
         const updatedAnswers = question.answers.map(ans => {
             if (!ans.revealed) {
                 return { ...ans, revealed: true };
             }
             return ans;
         });
-    
+
         const updatedQuestions = currentGame.questions.map((q, idx) => {
             if (idx === currentQuestionIndex) {
                 return { ...q, answers: updatedAnswers };
             }
             return q;
         });
-    
+
         setCurrentGame({ ...currentGame, questions: updatedQuestions });
-    
-        // Load and play the reveal answer sound
-        try {
-            const { sound: revealSound } = await Audio.Sound.createAsync(
-                require('./assets/reveal_answer.wav')
-            );
-            await revealSound.playAsync();
-            revealSound.setOnPlaybackStatusUpdate(status => {
-                if (!status.isPlaying) {
-                    revealSound.unloadAsync(); // Unload the sound after it plays
-                }
-            });
-        } catch (error) {
-            console.error("Error playing reveal answer sound:", error);
-        }
     };
 
     const onEndGame = () => {
@@ -379,7 +364,7 @@ const styles = StyleSheet.create({
     },
     playerText: {
         color: '#FFFFFF', 
-        fontSize: 18,  
+        fontSize: 25,  
         fontWeight: 'bold',  
         textAlign: 'center',  
     },
