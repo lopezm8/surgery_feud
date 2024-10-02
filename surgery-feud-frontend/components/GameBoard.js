@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between',
         marginTop: 10,
-        paddingHorizontal: 10,  // Add padding to prevent overlap with scores
+        paddingHorizontal: 15,  // Added padding to prevent score overlap
     },
     column: {
         flex: 1,

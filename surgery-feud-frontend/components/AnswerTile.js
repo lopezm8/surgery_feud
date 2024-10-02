@@ -115,7 +115,7 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
     );
 }
 
-const dynamicFontSize = width < 360 ? width * 0.035 : 26;  // Smaller screens get a smaller font
+const dynamicFontSize = width < 360 ? width * 0.03 : 26;  // Smaller screens get a smaller font
 
 const styles = StyleSheet.create({
     container: {
@@ -154,21 +154,18 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingLeft: 10,
-        paddingRight: 10,
+        paddingHorizontal: 5, // Reduced padding to give more space
     },
     answerText: {
         color: '#FFFFFF',
         textAlign: 'center',
         fontWeight: 'bold',
         flexShrink: 1,
-        flexWrap: 'wrap',  
         fontSize: dynamicFontSize,
         adjustsFontSizeToFit: true,
-        numberOfLines: 2,  // Allow up to 2 lines of text
+        numberOfLines: 2,  // Ensure 2 lines max to prevent overflow
         minimumFontScale: 0.5,
     },
-    // Add more padding and adjust width for small screens
     pointsContainer: {
         backgroundColor: '#1B1F3B',
         borderRadius: 5,
@@ -178,11 +175,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: '100%',
         width: 60,
-        padding: width < 360 ? 3 : 5, // Dynamic padding for small screens
+        paddingHorizontal: 5, 
     },
     pointsText: {
         color: '#FFFFFF',
-        fontSize: dynamicFontSize,  // Use dynamic font size
+        fontSize: dynamicFontSize,  
         fontWeight: 'bold',
         textAlign: 'center',
         adjustsFontSizeToFit: true,
@@ -191,7 +188,7 @@ const styles = StyleSheet.create({
     numberText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
-        fontSize: 26,  // Fixed font size for numbers
+        fontSize: 26,  
     },
     emptyTile: {
         backgroundColor: '#005BB5',

@@ -321,16 +321,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 3,
         borderColor: '#FFD700',
-        marginHorizontal: 15,  // Add margin to prevent overlap with the board
+        marginHorizontal: 20,  // Increased margin to avoid overlap with the board
     },
     playerScoreText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
         textAlign: 'center',
         adjustsFontSizeToFit: true,
-        minimumFontScale: 0.5, // Allow shrinking for smaller screens
-        numberOfLines: 1,
-        fontSize: dynamicFontSize, // Dynamic size based on screen width
+        minimumFontScale: 0.5,
+        numberOfLines: 1,  
+        fontSize: dynamicFontSize,
     },
     gameBoard: {
         width: '80%',
@@ -347,10 +347,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         flexWrap: 'wrap',
         adjustsFontSizeToFit: true, 
-        minimumFontScale: 0.6,
-        numberOfLines: 2,  // Limit to 2 lines
-        paddingHorizontal: 20,
-        fontSize: dynamicFontSize,
+        minimumFontScale: 0.5,  // Smaller scaling for smaller screens
+        numberOfLines: 2,  
+        paddingHorizontal: 15,  // Adjusted padding to prevent overflow
+        fontSize: dynamicFontSize, 
     },
     bottomArea: {
         width: '100%',
