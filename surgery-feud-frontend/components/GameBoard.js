@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import AnswerTile from './AnswerTile';
 
-export default function GameBoard({ answers, onRevealAnswer, currentGameId }) {
+export default function GameBoard({ answers, onRevealAnswer }) {
     const gridItems = Array(8).fill(null);
 
     for (let i = 0; i < answers.length && i < 8; i++) {
@@ -17,7 +17,7 @@ export default function GameBoard({ answers, onRevealAnswer, currentGameId }) {
             <View style={styles.column}>
                 {leftColumn.map((answer, index) => (
                     <AnswerTile
-                        key={`${currentGameId}-${index}`}  // Unique key based on game and index
+                        key={`left-answer-${index}`}
                         index={index} // Indices 0 to 3
                         answer={answer}
                         revealed={answer ? answer.revealed : false}
@@ -28,7 +28,7 @@ export default function GameBoard({ answers, onRevealAnswer, currentGameId }) {
             <View style={styles.column}>
                 {rightColumn.map((answer, index) => (
                     <AnswerTile
-                        key={`${currentGameId}-${index + 4}`}  // Unique key based on game and index
+                        key={`right-answer-${index + 4}`}
                         index={index + 4} // Indices 4 to 7
                         answer={answer}
                         revealed={answer ? answer.revealed : false}
