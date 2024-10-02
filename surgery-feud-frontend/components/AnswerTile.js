@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Pressable, View, Text, StyleSheet, Animated, Easing, Dimensions } from 'react-native';
+import { Pressable, View, Text, StyleSheet, Animated, Easing } from 'react-native';
 import { Audio } from 'expo-av';
 import revealSound from '../assets/reveal_answer.wav';
 
@@ -85,7 +85,8 @@ export default function AnswerTile({ index, answer, revealed, onReveal }) {
                             <Text
                                 style={styles.answerText}
                                 adjustsFontSizeToFit
-                                numberOfLines={1}
+                                numberOfLines={2} // Allow two lines for longer answers
+                                minimumFontScale={0.5} // Allow font size to scale down if necessary
                             >
                                 {answer.answer.toUpperCase()}
                             </Text>
@@ -140,12 +141,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingLeft: 10,
+        paddingRight: 10, // Add padding for better alignment
     },
     answerText: {
         color: '#FFFFFF',
         fontSize: 26,
         fontWeight: 'bold',
         textAlign: 'center',
+        flexShrink: 1, // Ensure text doesn't overflow by shrinking it
     },
     pointsContainer: {
         backgroundColor: '#1B1F3B',
