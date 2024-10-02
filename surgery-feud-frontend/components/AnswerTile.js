@@ -161,7 +161,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         flexShrink: 1,
         flexWrap: 'wrap',
+        fontSize: dynamicFontSize, // Adjust the font size dynamically
     },
+    // Add more padding and adjust width for small screens
     pointsContainer: {
         backgroundColor: '#1B1F3B',
         borderRadius: 5,
@@ -171,12 +173,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: '100%',
         width: 60,
-        padding: 5,
+        padding: width < 360 ? 3 : 5, // Dynamic padding for small screens
     },
     pointsText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
         textAlign: 'center',
+        fontSize: dynamicFontSize, // Adjust the font size dynamically
+        adjustsFontSizeToFit: true, // Ensure the font shrinks to fit the container
+        minimumFontScale: 0.5, // Allow font to scale down as necessary
     },
     numberText: {
         color: '#FFFFFF',

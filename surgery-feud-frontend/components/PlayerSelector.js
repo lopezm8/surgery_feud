@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Pressable, Text, StyleSheet, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window'); // Get screen width
+const dynamicFontSize = width < 360 ? width * 0.04 : 24;
 
 export default function PlayerSelector({ onSelectPlayer }) {
     return (
@@ -52,10 +53,10 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: 'bold',
         textAlign: 'center',
-        paddingHorizontal: 10,
+        paddingHorizontal: 12, // Increase padding to prevent overflow
         adjustsFontSizeToFit: true,
         minimumFontScale: 0.5,
-        numberOfLines: 1,
-        fontSize: width < 360 ? width * 0.035 : 26,  // Adjust font size dynamically
+        numberOfLines: 1, // Prevent text from wrapping into multiple lines
+        fontSize: dynamicFontSize, // Dynamic size based on screen width
     },
 });

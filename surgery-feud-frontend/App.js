@@ -10,6 +10,7 @@ import RevealButton from './components/RevealButton';
 import RedXOverlay from './components/RedXOverlay';
 
 const { width, height } = Dimensions.get('window'); // Get screen width and height
+const dynamicFontSize = width < 360 ? width * 0.04 : 26;
 
 export default function App() {
     const [games, setGames] = useState([]);
@@ -319,16 +320,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 3,
         borderColor: '#FFD700',
-        margin: 15, // Add margin around score container
+        margin: 10, // Add margin around score container to prevent overlap
     },
     playerScoreText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
         textAlign: 'center',
         adjustsFontSizeToFit: true,
-        minimumFontScale: 0.5,
+        minimumFontScale: 0.5, // Allow shrinking for smaller screens
         numberOfLines: 1,
-        fontSize: width < 360 ? width * 0.04 : 26,  // Adjust score font size dynamically
+        fontSize: dynamicFontSize, // Dynamic size based on screen width
     },
     gameBoard: {
         width: '80%',
@@ -344,11 +345,11 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         textAlign: 'center',
         flexWrap: 'wrap',
-        adjustsFontSizeToFit: true,
+        adjustsFontSizeToFit: true, // Ensure the question fits the container
         minimumFontScale: 0.6,
-        numberOfLines: 2,
+        numberOfLines: 2, // Limit the question to 2 lines
         paddingHorizontal: 20,
-        fontSize: width < 360 ? width * 0.04 : 26,  // Adjust question font size dynamically
+        fontSize: dynamicFontSize, // Adjust the font size dynamically
     },
     bottomArea: {
         width: '100%',
